@@ -1,6 +1,6 @@
 -- ~/.config/nvim/lua/plugins/cmp.lua
--- use tab to select_next_item
--- use shift to select_prev_item
+-- use ctrl+n to select_next_item
+-- use ctrl+h to select_prev_item
 
 -- if true then
 --     return {}
@@ -9,6 +9,7 @@
 return {
     {
         "hrsh7th/nvim-cmp",
+        -- enabled = false,
         opts = function(_, opts)
             local cmp = require("cmp")
             opts.mapping = vim.tbl_extend("force", opts.mapping, {
@@ -28,6 +29,7 @@ return {
                         fallback()
                     end
                 end, { "i", "s" }),
+                ["<C-p>"] = nil,
             })
             return opts
         end,

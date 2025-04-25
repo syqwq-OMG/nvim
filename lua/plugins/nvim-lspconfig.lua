@@ -8,6 +8,7 @@ return {
         -- keys[#keys + 1] = { "K", "<cmd>echo 'hello'<cr>" }
         -- disable a keymap
         keys[#keys + 1] = { "<c-k>", false }
+        keys[#keys + 1] = { "<c-p>", false }
         -- add a keymap
         -- keys[#keys + 1] = { "H", "<cmd>echo 'hello'<cr>" }
     end,
