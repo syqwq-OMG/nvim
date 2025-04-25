@@ -7,8 +7,11 @@ local del = vim.keymap.del
 local opt = { noremap = true, silent = true }
 
 -- del("n", "<c-k>")
--- map("n", "<C-j>", "4j", opt)
--- map("n", "<C-k>", "4k", opt)
+map("n", "<C-d>", "10j", opt)
+map("n", "<C-u>", "10k", opt)
 
-map("n", "<C-S-Left>", ":vertical resize -2<CR>", opt)
-map("n", "<C-S-Right>", ":vertical resize +2<CR>", opt)
+map("i", "<C-[", "<Esc>", opt)
+map("v", "<C-[", "<Esc>", opt)
+map("t", "<C-[", "<Esc>", opt)
+-- map("n", "<C-S-Left>", ":vertical resize -2<CR>", opt)
+-- map("n", "<C-S-Right>", ":vertical resize +2<CR>", opt)
