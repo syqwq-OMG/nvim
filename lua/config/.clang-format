@@ -1,0 +1,15 @@
+BasedOnStyle: LLVM
+# BasedOnStyle: Google
+IndentWidth: 4
+TabWidth: 4
+
+# 1) Allow tiny blocks/ifs/loops/functions to stay on one line
+AllowShortFunctionsOnASingleLine: All # e.g. void f() { x(); }
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+AllowShortLoopsOnASingleLine: true
+AllowShortBlocksOnASingleLine: Always
+
+# 2) Turn off automatic line-breaking
+#    0 = no limit, so clang-format will only break
+#    where you’ve already put a newline.
+ColumnLimit: 0

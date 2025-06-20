@@ -23,3 +23,24 @@ vim.o.softtabstop = 4 -- Number of spaces inserted instead of a TAB character
 vim.o.shiftwidth = 4 -- Number of spaces inserted when indenting
 
 vim.o.wrap = true
+
+-- Enable the option to require a Prettier config file
+-- If no prettier config file is found, the formatter will not be used
+vim.g.lazyvim_prettier_needs_config = true
+
+-- 命令行高为1，提供足够的显示空间
+vim.o.cmdheight = 1
+
+vim.g.lazyvim_blink_main = false
+
+vim.cmd([[
+  cnoreabbrev <expr> ctt getcmdtype() == ':' && getcmdline() ==# 'ctt' ? 'CompetiTest' : 'ctt'
+]])
+
+vim.cmd([[
+  cnoreabbrev <expr> crr getcmdtype() == ':' && getcmdline() ==# 'crr' ? 'CompetiTest run' : 'crr'
+]])
+
+vim.cmd([[
+  cnoreabbrev <expr> crp getcmdtype() == ':' && getcmdline() ==# 'crp' ? 'CompetiTest receive persistently' : 'crp'
+]])
