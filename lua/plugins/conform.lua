@@ -1,3 +1,13 @@
+local is_on_mac = false
+if vim.fn.has("mac") then
+    is_on_mac = true
+end
+
+local CLANG_FORMAT_ARGS = { "--style=file:/home/syqwq/.config/nvim/lua/config/.clang-format" }
+if is_on_mac then
+    CLANG_FORMAT_ARGS = { "--style=file:/Users/syqwq-omg/.config/nvim/lua/config/.clang-format" }
+end
+
 return {
     "stevearc/conform.nvim",
     opts = function(_, opts)
@@ -18,11 +28,9 @@ return {
         opts.formatters = {
             injected = { options = { ignore_errors = true } },
             clang_format = {
-                -- prepend_args = { "--style={BasedOnStyle: LLVM, IndentWidth: 4, TabWidth: 4, ColumnLimit: 0}" },
-                -- prepend_args = { "--style={BasedOnStyle: LLVM, IndentWidth: 4, TabWidth: 4}" },
-                -- prepend_args = { "--style={BasedOnStyle: Google, IndentWidth: 4, TabWidth: 4, ColumnLimit: 0}" },
-                prepend_args = { "--style=file:/Users/syqwq-omg/.config/nvim/lua/config/.clang-format" },
+                -- prepend_args = { "--style=file:/Users/syqwq-omg/.config/nvim/lua/config/.clang-format" },
                 -- prepend_args = { "--style=file:/home/syqwq/.config/nvim/lua/config/.clang-format" },
+                prepend_args = CLANG_FORMAT_ARGS,
             },
             prettier = {
                 -- Add Prettier configuration options here

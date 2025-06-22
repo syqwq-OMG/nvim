@@ -1,3 +1,15 @@
+local is_on_mac = false
+if vim.fn.has("mac") then
+    is_on_mac = true
+end
+
+local PORT = 27121
+local TEMPLATE_PATH = "~/workspace/oi/template/template.cpp"
+if is_on_mac then
+    PORT = 10045
+    TEMPLATE_PATH = "~/syqwq-workspace/oi/template/template.cpp"
+end
+
 return {
     "xeluxee/competitest.nvim",
     dependencies = "MunifTanjim/nui.nvim",
@@ -129,14 +141,14 @@ return {
             testcases_input_file_format = "$(FNOEXT)_input$(TCNUM).txt",
             testcases_output_file_format = "$(FNOEXT)_output$(TCNUM).txt",
 
-            -- companion_port = 27121,
-            companion_port = 10045,
+            companion_port = PORT,
             receive_print_message = true,
             start_receiving_persistently_on_setup = false,
             -- template_file = false,
             template_file = {
                 -- cpp = "~/workspace/oi/template/template.cpp",
-                cpp = "~/syqwq-workspace/oi/template/template.cpp",
+                -- cpp = "~/syqwq-workspace/oi/template/template.cpp",
+                cpp = TEMPLATE_PATH,
             },
             -- evaluate_template_modifiers = false,
             evaluate_template_modifiers = true,
@@ -145,6 +157,12 @@ return {
             -- received_problems_path = "$(CWD)/$(PROBLEM).$(FEXT)",
             received_problems_path = function(task, file_extension)
                 local cwd = vim.fn.getcwd()
+                if string.match(task.group, "AtCoder") then
+                    -- https://atcoder.jp/contests/abc411/tasks/abc411_a
+                    local contest_id, problem_id = string.match(task.url, "contests/(%w+)/tasks/([%w_]+)")
+                    return string.format("%s/atcoder/%s/%s.%s", cwd, contest_id, problem_id, file_extension)
+                end
+
                 -- acwing
                 if string.match(task.group, "AcWing") then
                     local problem_id = string.match(task.url, "www.acwing.com/problem/content/(%d+)/")
